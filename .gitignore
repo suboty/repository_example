@@ -1,0 +1,9 @@
+# service folders
+.idea
+.venv
+
+# envs
+*.env
+
+# tests and migrations
+scripts
