@@ -12,7 +12,7 @@
 
 Краткая схема такого сервиса:
 
-<img src="assets/pattern-repository.png" alt="Структура сервиса-репозитория" width="400" height="200">
+<img src="assets/pattern-repository.png" alt="Структура сервиса-репозитория" width="800" height="400">
 
 Предлагаемые данные для примера имеют следующую структуру:
 
