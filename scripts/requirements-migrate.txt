@@ -1,0 +1,3 @@
+# migrate
+pandas==2.2.2
+tqdm==4.66.2
