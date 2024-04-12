@@ -16,7 +16,7 @@
 
 Предлагаемые данные для примера имеют следующую структуру:
 
-<img src="assets/db-structure.png" alt="Структура сервиса-репозитория" width="400" height="200">
+<img src="assets/db-structure.png" alt="Структура БД>">
 
 ## Запуск сервиса
 Запускаем docker-compose
