@@ -13,7 +13,7 @@ class RSSMessages(EntityMeta):
     description = Column(String, nullable=False)
     tags_array = Column(ARRAY(String), nullable=True)
     categories_array = Column(ARRAY(String), nullable=True)
-    enclosures_array = Column(ARRAY(String), nullable=True)
+    enclosures_tuples = Column(ARRAY(String), nullable=True)
     author = Column(String, nullable=True)
     guid = Column(String, nullable=False)
     public_time = Column(TIMESTAMP, nullable=False)
@@ -26,9 +26,10 @@ class RSSMessages(EntityMeta):
             "id": self.id,
             "link": self.link.__str__(),
             "title": self.title.__str__(),
+            "description": self.description.__str__(),
             "tags_array": self.tags_array,
             "categories_array": self.categories_array,
-            "enclosures_array": self.enclosures_array,
+            "enclosures_tuples": self.enclosures_tuples,
             "author": self.author.__str__(),
             "guid": self.guid.__str__(),
             "public_time": self.public_time.__str__(),
@@ -45,7 +46,7 @@ class Sources(EntityMeta):
     source_name = Column(String, nullable=False)
     source_description = Column(String, nullable=False)
     site_url = Column(String, nullable=False)
-    rss_url = Column(ARRAY(String), nullable=True)
+    rss_url = Column(String, nullable=True)
     source_time = Column(TIMESTAMP, nullable=False)
     create_time = Column(TIMESTAMP, nullable=False, server_default=func.now(), index=True)
     source_hash = Column(String, nullable=False, server_default='')
@@ -61,3 +62,5 @@ class Sources(EntityMeta):
             "create_time": self.create_time.__str__(),
             "source_hash": self.source_hash.__str__(),
         }
+
+

@@ -5,8 +5,7 @@ from functools import lru_cache
 from typing import Dict, Optional
 
 from dotenv import dotenv_values
-from pydantic_settings import BaseSettings
-from pydantic import error_wrappers
+from pydantic import error_wrappers, BaseSettings
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_scoped_session
 from sqlalchemy.orm import sessionmaker
 
@@ -51,7 +50,6 @@ class EnvironmentDBSettings(BaseSettings):
     DATABASE_PORT: int
     DATABASE_USERNAME: str
     DEBUG_MODE: bool
-    DATABASE_SCHEMA: str
 
 
 @lru_cache
@@ -80,9 +78,8 @@ async def connect_to_database(env):
             sessionmaker(bind=Engine, expire_on_commit=False, class_=AsyncSession),
             scopefunc=current_task)
 
-        schema = env.DATABASE_SCHEMA
         connection = await SessionLocal.connection()
-        await connection.execution_options(schema_translate_map={None: schema})
+        await connection.execution_options(schema_translate_map={None: 'public'})
 
         return Engine, SessionLocal
 
