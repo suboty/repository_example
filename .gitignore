@@ -4,6 +4,3 @@
 
 # envs
 *.env
-
-# tests and migrations
-scripts
