@@ -1,4 +1,5 @@
 import ast
+from pathlib import Path
 
 from tqdm import tqdm
 import requests
@@ -7,9 +8,9 @@ import pandas as pd
 REPOSITORY_URL = 'http://localhost:8786/v0'
 
 if __name__ == '__main__':
-    source_data = pd.read_csv('data/source.csv').fillna('')
+    source_data = pd.read_csv(Path('data', 'source.csv')).fillna('')
 
-    data = pd.read_csv('data/merged_output_tsv.csv', on_bad_lines='skip', sep='\t').fillna('')
+    data = pd.read_csv(Path('data', 'merged_output_tsv.csv'), on_bad_lines='skip', sep='\t').fillna('')
 
     try:
         print('Migrate rss messages...')
@@ -46,3 +47,5 @@ if __name__ == '__main__':
     except requests.exceptions.ConnectionError:
         print('Error while connection! Canceled')
         exit(111)
+    except Exception as e:
+        print(f'Error while loading data! Exception: {e}')
