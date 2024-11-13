@@ -52,6 +52,32 @@ DEBUG_MODE=нужны_ли_логи_sqlalchemy
 
 Сервис работает асинхронно, учитывайте это при экспериментах
 
+## Запуск PostgreSQL
+
+Для запуска СУБД PostgreSQL выполните следующий скрипт:
+```commandline
+sh scripts/run_postgres.sh
+```
+
+Для запущенной БД конфигурация для .env файла будет выглядеть следующим образом:
+
+```
+DATABASE_DIALECT=postgresql+asyncpg
+DATABASE_HOSTNAME=localhost
+DATABASE_NAME=demo_db
+DATABASE_PASSWORD=password_123
+DATABASE_PORT=5432
+DATABASE_USERNAME=user_demo
+DEBUG_MODE=True
+```
+
+Для подключение через DBeaver креды будут выглядеть следующий образом:
+```
+URL: jdbc:postgresql://localhost:5432/demo_db
+LOGIN: user_demo
+PASSWORD: password_123
+```
+
 ## Загрузка тестовых данных
 
 Установите все необходимые библиотеки:
