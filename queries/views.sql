@@ -87,7 +87,7 @@ create view messages_report as (
 select * from messages_report;
 
 
--- Создадим представление для конкретного дня
+-- Создадим представление для конкретного дня (1 января 2024)
 create view messages_extra_2024_01_01 as (
 	with intervals as (
 		select
@@ -104,4 +104,24 @@ create view messages_extra_2024_01_01 as (
 	)
 	select * from intervals
 	where date(public_time) = '2024-01-01'
+);
+
+
+-- Создадим представление для конкретного дня (16 августа 2024)
+create view messages_extra_2024_08_16 as (
+	with intervals as (
+		select
+			rm.id,
+			rm.link,
+			s.source_name || ' | ' || s.site_url as "source",
+			rm.title,
+			rm.public_time,
+			rm.source_time,
+			date(rm.source_time) - date(rm.public_time) as publication_interval,
+			cardinality(rm.enclosures_tuples) as enclosures_length
+		from rss_messages rm
+		join sources s on s.source_hash = rm.source_hash
+	)
+	select * from intervals
+	where date(public_time) = '2021-08-16'
 );
