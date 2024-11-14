@@ -74,6 +74,7 @@ with sort_messages as (
 )
 select * from sort_messages;
 
+
 -- Посмотрим сообщения с определенным тегом
 select * from rss_messages rm
 where 'Россия' = any(rm.tags_array);
