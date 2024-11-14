@@ -1,5 +1,6 @@
 -- Аналитические запросы
 
+
 -- Посмотрим таблицы
 select * from rss_messages rm;
 select * from sources s;
@@ -146,7 +147,7 @@ union all
 select 'not day by day' as "case", * from not_day_by_day;
 
 
--- Посчитаем процент по интервалам сбора
+-- Посчитаем количество сообщений по интервалам публикации
 with intervals as (
 	select
 		case
